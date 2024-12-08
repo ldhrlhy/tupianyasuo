@@ -3,62 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片压缩工具</title>
+    <title>东东拿铁在线工具箱</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <!-- 头部标题 -->
         <header>
-            <h1>图片压缩工具</h1>
-            <p>简单易用的在线图片压缩服务</p>
+            <h1>拿铁在线工具</h1>
+            <p>简单易用的在线工具集合</p>
         </header>
 
-        <!-- 上传区域 -->
-        <div class="upload-area" id="dropZone">
-            <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
-            <div class="upload-content">
-                <svg class="upload-icon" viewBox="0 0 24 24">
-                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                </svg>
-                <p>点击或拖拽图片到这里</p>
-                <p class="upload-hint">支持 PNG、JPG 格式</p>
+        <!-- 工具选择标签 -->
+        <div class="tools-tabs">
+            <button class="tab-btn active" data-tool="image-compress">图片压缩工具</button>
+            <button class="tab-btn" data-tool="json-format">JSON格式化工具</button>
+            <button class="tab-btn" data-tool="timestamp">时间戳转换</button>
+        </div>
+
+        <!-- 图片压缩工具面板 -->
+        <div class="tool-panel" id="image-compress-panel">
+            <!-- 上传区域 -->
+            <div class="upload-area" id="dropZone">
+                <input type="file" id="fileInput" accept="image/png,image/jpeg" hidden>
+                <div class="upload-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                    <p>点击或拖拽图片到这里</p>
+                    <p class="upload-hint">支持 PNG、JPG 格式</p>
+                </div>
+            </div>
+
+            <!-- 图片预览和压缩控制区域 -->
+            <div class="preview-container" id="previewContainer" style="display: none;">
+                <div class="preview-section">
+                    <div class="preview-box">
+                        <h3>原图</h3>
+                        <div class="image-container">
+                            <img id="originalImage" alt="原图预览">
+                        </div>
+                        <div class="file-info">
+                            <span>文件大小：</span>
+                            <span id="originalSize">0 KB</span>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-box">
+                        <h3>压缩后</h3>
+                        <div class="image-container">
+                            <img id="compressedImage" alt="压缩后预览">
+                        </div>
+                        <div class="file-info">
+                            <span>文件大小：</span>
+                            <span id="compressedSize">0 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 压缩控制区域 -->
+                <div class="control-section">
+                    <div class="quality-control">
+                        <label for="qualitySlider">压缩质量：<span id="qualityValue">80%</span></label>
+                        <input type="range" id="qualitySlider" min="0" max="100" value="80">
+                    </div>
+                    <button id="downloadBtn" class="download-btn">下载压缩后的图片</button>
+                </div>
             </div>
         </div>
 
-        <!-- 图片预览和压缩控制区域 -->
-        <div class="preview-container" id="previewContainer" style="display: none;">
-            <div class="preview-section">
-                <div class="preview-box">
-                    <h3>原图</h3>
-                    <div class="image-container">
-                        <img id="originalImage" alt="原图预览">
-                    </div>
-                    <div class="file-info">
-                        <span>文件大小：</span>
-                        <span id="originalSize">0 KB</span>
-                    </div>
+        <!-- JSON格式化工具面板 -->
+        <div class="tool-panel" id="json-format-panel" style="display: none;">
+            <div class="json-container">
+                <div class="json-input-section">
+                    <h3>输入JSON</h3>
+                    <textarea id="jsonInput" placeholder="请输入JSON字符串..."></textarea>
                 </div>
-                
-                <div class="preview-box">
-                    <h3>压缩后</h3>
-                    <div class="image-container">
-                        <img id="compressedImage" alt="压缩后预览">
-                    </div>
-                    <div class="file-info">
-                        <span>文件大小：</span>
-                        <span id="compressedSize">0 KB</span>
-                    </div>
+                <div class="json-output-section">
+                    <h3>格式化结果</h3>
+                    <pre id="jsonOutput"></pre>
                 </div>
             </div>
+        </div>
 
-            <!-- 压缩控制区域 -->
-            <div class="control-section">
-                <div class="quality-control">
-                    <label for="qualitySlider">压缩质量：<span id="qualityValue">80%</span></label>
-                    <input type="range" id="qualitySlider" min="0" max="100" value="80">
+        <!-- 时间戳转换工具面板 -->
+        <div class="tool-panel" id="timestamp-panel" style="display: none;">
+            <div class="timestamp-container">
+                <!-- 当前时间显示 -->
+                <div class="current-time">
+                    <h3>当前时间</h3>
+                    <div class="time-display" id="currentTime"></div>
                 </div>
-                <button id="downloadBtn" class="download-btn">下载压缩后的图片</button>
+                
+                <!-- 时间戳转时间 -->
+                <div class="convert-section">
+                    <h3>时间戳转时间</h3>
+                    <div class="input-group">
+                        <input type="number" id="timestampInput" placeholder="请输入时间戳">
+                        <div class="unit-select">
+                            <label class="unit-option">
+                                <input type="radio" name="timestampUnit" value="ms" checked>
+                                <span>毫秒</span>
+                            </label>
+                            <label class="unit-option">
+                                <input type="radio" name="timestampUnit" value="s">
+                                <span>秒</span>
+                            </label>
+                        </div>
+                        <button class="convert-btn" id="timestamp2timeBtn">转换</button>
+                    </div>
+                    <div class="result" id="timestamp2timeResult">转换结果：</div>
+                </div>
+                
+                <!-- 时间转时间戳 -->
+                <div class="convert-section">
+                    <h3>时间转时间戳</h3>
+                    <div class="input-group">
+                        <input type="datetime-local" id="timeInput" step="1">
+                        <button class="convert-btn" id="time2timestampBtn">转换</button>
+                    </div>
+                    <div class="result" id="time2timestampResult">转换结果：</div>
+                </div>
             </div>
         </div>
     </div>
@@ -66,3 +131,4 @@
     <script src="script.js"></script>
 </body>
 </html> 
+
