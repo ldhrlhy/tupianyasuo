@@ -344,4 +344,220 @@ input[type="range"] {
 .unit-option span {
     font-size: 0.9rem;
     color: var(--text-color);
+}
+
+/* 正则表达式工具样式 */
+.regex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.regex-input-section,
+.test-section,
+.result-section,
+.regex-templates {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.regex-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#regexInput {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #E5E5E5;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-size: 1rem;
+}
+
+.regex-flags {
+    display: flex;
+    gap: 1rem;
+}
+
+.regex-flags label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+#testInput {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: 1px solid #E5E5E5;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.match-result {
+    padding: 1rem;
+    background-color: #F5F5F7;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.match-result mark {
+    background-color: rgba(255, 213, 0, 0.3);
+    color: #1D1D1F;
+    padding: 2px 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 213, 0, 0.5);
+    margin: 0 1px;
+}
+
+.match-stats {
+    margin-top: 1rem;
+    color: var(--text-color);
+}
+
+.template-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.template-btn {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 122, 255, 0.1);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.template-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Base64 编解码工具样式 */
+.base64-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.base64-section {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.encode-area,
+.decode-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.base64-section textarea {
+    width: 100%;
+    height: 120px;
+    padding: 1rem;
+    border: 1px solid #E5E5E5;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.result-area {
+    margin-top: 1rem;
+}
+
+.result {
+    width: 100%;
+    min-height: 100px;
+    max-height: 300px;
+    padding: 1rem;
+    background-color: #F5F5F7;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-size: 14px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.copy-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.preview-area {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #F5F5F7;
+    border-radius: var(--border-radius);
+}
+
+.preview-content {
+    margin: 1rem 0;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.preview-content img,
+.preview-content video,
+.preview-content audio {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.file-upload-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.upload-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #0056b3;
+}
+
+#selectedFileName {
+    color: #86868B;
+    font-size: 0.9rem;
 } 

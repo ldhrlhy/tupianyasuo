@@ -10,7 +10,7 @@
     <div class="container">
         <!-- 头部标题 -->
         <header>
-            <h1>拿铁在线工具</h1>
+            <h1>东东拿铁在线工具</h1>
             <p>简单易用的在线工具集合</p>
         </header>
 
@@ -19,6 +19,8 @@
             <button class="tab-btn active" data-tool="image-compress">图片压缩工具</button>
             <button class="tab-btn" data-tool="json-format">JSON格式化工具</button>
             <button class="tab-btn" data-tool="timestamp">时间戳转换</button>
+            <button class="tab-btn" data-tool="regex">正则表达式工具</button>
+            <button class="tab-btn" data-tool="base64">Base64 编解码</button>
         </div>
 
         <!-- 图片压缩工具面板 -->
@@ -123,6 +125,101 @@
                         <button class="convert-btn" id="time2timestampBtn">转换</button>
                     </div>
                     <div class="result" id="time2timestampResult">转换结果：</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 正则表达式工具面板 -->
+        <div class="tool-panel" id="regex-panel" style="display: none;">
+            <div class="regex-container">
+                <!-- 正则表达式输入区域 -->
+                <div class="regex-input-section">
+                    <h3>正则表达式</h3>
+                    <div class="regex-input-group">
+                        <input type="text" id="regexInput" placeholder="输入正则表达式...">
+                        <div class="regex-flags">
+                            <label><input type="checkbox" id="flagGlobal" checked><span>g (全局)</span></label>
+                            <label><input type="checkbox" id="flagCase"><span>i (忽略大小写)</span></label>
+                            <label><input type="checkbox" id="flagMultiline"><span>m (多行)</span></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 常用正则模板 -->
+                <div class="regex-templates">
+                    <h3>常用正则模板</h3>
+                    <div class="template-list">
+                        <button class="template-btn" data-pattern="^1[3-9]\d{9}$" data-desc="手机号码">手机号码</button>
+                        <button class="template-btn" data-pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" data-desc="邮箱">邮箱</button>
+                        <button class="template-btn" data-pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$" data-desc="URL">URL</button>
+                        <button class="template-btn" data-pattern="^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$" data-desc="日期(YYYY-MM-DD)">日期</button>
+                        <button class="template-btn" data-pattern="^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[\dXx]$" data-desc="身份证号">身份证号</button>
+                        <button class="template-btn" data-pattern="^[a-zA-Z][\w-]{3,15}$" data-desc="用户名(字母开头,4-16位)">用户名</button>
+                    </div>
+                </div>
+                
+                <!-- 测试文本区域 -->
+                <div class="test-section">
+                    <h3>测试文本</h3>
+                    <textarea id="testInput" placeholder="输入需要测试的文本..."></textarea>
+                </div>
+                
+                <!-- 匹配结果区域 -->
+                <div class="result-section">
+                    <h3>匹配结果</h3>
+                    <div id="matchResult" class="match-result"></div>
+                    <div class="match-stats">
+                        <span>匹配总数：<span id="matchCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Base64 编解码工具面板 -->
+        <div class="tool-panel" id="base64-panel" style="display: none;">
+            <div class="base64-container">
+                <!-- 编码区域 -->
+                <div class="base64-section">
+                    <h3>文本编码</h3>
+                    <div class="encode-area">
+                        <textarea id="textInput" placeholder="输入需要编码的文本..."></textarea>
+                        <button class="convert-btn" id="encodeBtn">编码</button>
+                    </div>
+                    <div class="result-area">
+                        <pre id="encodeResult" class="result"></pre>
+                        <button class="copy-btn" data-target="encodeResult">复制结果</button>
+                    </div>
+                </div>
+                
+                <!-- 解码区域 -->
+                <div class="base64-section">
+                    <h3>Base64 解码</h3>
+                    <div class="decode-area">
+                        <textarea id="base64Input" placeholder="输入Base64字符串..."></textarea>
+                        <button class="convert-btn" id="decodeBtn">解码</button>
+                    </div>
+                    <div class="result-area">
+                        <pre id="decodeResult" class="result"></pre>
+                        <div class="preview-area" id="previewArea" style="display: none;">
+                            <h4>文件预览</h4>
+                            <div class="preview-content" id="previewContent"></div>
+                            <button class="download-btn" id="downloadBase64Btn">下载文件</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 文件转Base64 -->
+                <div class="base64-section">
+                    <h3>文件转Base64</h3>
+                    <div class="file-upload-area">
+                        <input type="file" id="fileToBase64" hidden>
+                        <button class="upload-btn" id="selectFileBtn">选择文件</button>
+                        <span id="selectedFileName">未选择文件</span>
+                    </div>
+                    <div class="result-area">
+                        <pre id="fileEncodeResult" class="result"></pre>
+                        <button class="copy-btn" data-target="fileEncodeResult">复制结果</button>
+                    </div>
                 </div>
             </div>
         </div>
